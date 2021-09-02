@@ -1,5 +1,5 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "3.0.2" %}
+{% set version = "3.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9ce11a8060e1c85639e851498f37ee0813a62ad6a01f8a113e1d3e0a91af6936
+  sha256: 2485fb9d8d81e0c1e7ae7b916890615dce852f06253b849200500390e60b4254
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
@@ -38,7 +38,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: 'A enhanced launcher for JupyterLab.'
+  summary: A enhanced launcher for JupyterLab.
   dev_url: https://github.com/fcollonval/jlab-enhanced-launcher
 
 extra:
