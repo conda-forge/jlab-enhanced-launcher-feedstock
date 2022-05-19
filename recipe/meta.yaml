@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_' }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 8876844f7c929b8cf82bdc539a62ecb3efb9564dbbd8e9ecf50574525f52acd2
 
 build:
