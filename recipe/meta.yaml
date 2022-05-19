@@ -32,7 +32,7 @@ test:
   commands:
     - pip check
     - jupyter labextension list 2>&1 | grep -ie "@jlab-enhanced/launcher.*OK"
-    - python -m jupyterlab.browser_check --no-browser
+    - python -m jupyterlab.browser_check --no-browser-test
 
 about:
   home: https://github.com/fcollonval/jlab-enhanced-launcher
