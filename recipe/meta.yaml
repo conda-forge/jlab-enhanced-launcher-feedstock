@@ -1,13 +1,13 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "3.0.3" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2485fb9d8d81e0c1e7ae7b916890615dce852f06253b849200500390e60b4254
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 8876844f7c929b8cf82bdc539a62ecb3efb9564dbbd8e9ecf50574525f52acd2
 
 build:
   noarch: python
@@ -16,22 +16,23 @@ build:
 
 requirements:
   build:
-    - nodejs >=12.0.0
+    - nodejs >=14.0.0
   host:
-    - python >=3.6
+    - python >=3.7
     - pip
-    - jupyterlab >=3.0.0
-    - jupyter-packaging >=0.7.9,<0.8.0
+    - jupyterlab >=3.1.0
+    - jupyter-packaging >=0.10.0,<2.0.0
   run:
-    - python >=3.6
-    - jupyterlab >=3.0.0
+    - python >=3.7
 
 test:
   requires:
-    - nodejs >=12.0.0
+    - pip
+    - jupyterlab >=3.1.0
   commands:
+    - pip check
     - jupyter labextension list 2>&1 | grep -ie "@jlab-enhanced/launcher.*OK"
-    - python -m jupyterlab.browser_check  # [not linux]
+    - python -m jupyterlab.browser_check --no-browser-test
 
 about:
   home: https://github.com/fcollonval/jlab-enhanced-launcher
