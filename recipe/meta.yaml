@@ -6,29 +6,30 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 47c544719a32045508017e264c417a68049469f926c10d856b2dba54aa80c19d
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - nodejs >=14.0.0
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
     - jupyterlab >=3.1.0
     - jupyter-packaging >=0.10.0,<2.0.0
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   requires:
     - pip
     - jupyterlab >=3.1.0
+    - python {{ python_min }}
   commands:
     - pip check
     - jupyter labextension list 2>&1 | grep -ie "@jlab-enhanced/launcher.*OK"
