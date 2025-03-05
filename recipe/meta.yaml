@@ -1,5 +1,5 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "4.0.0rc1" %}
+{% set version = "4.0.0" %}
 
 package:
   name: {{ name|lower }}
