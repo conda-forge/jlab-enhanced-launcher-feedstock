@@ -1,13 +1,12 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "3.2.0" %}
+{% set version = "4.0.0rc1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 47c544719a32045508017e264c417a68049469f926c10d856b2dba54aa80c19d
+  path: ../../jlab-enhanced-launcher/
 
 build:
   noarch: python
@@ -18,17 +17,19 @@ requirements:
   build:
     - nodejs >=14.0.0
   host:
-    - python >=3.7
     - pip
-    - jupyterlab >=3.1.0
-    - jupyter-packaging >=0.10.0,<2.0.0
+    - python >=3.8
+    - hatchling >=1.5.0
+    - jupyterlab >=4.0.0,<5
+    - hatch-nodejs-version >=0.3.2
+    - hatch-jupyter-builder
   run:
-    - python >=3.7
+    - python >=3.8
 
 test:
   requires:
     - pip
-    - jupyterlab >=3.1.0
+    - jupyterlab >=4.0.0,<5
   commands:
     - pip check
     - jupyter labextension list 2>&1 | grep -ie "@jlab-enhanced/launcher.*OK"
