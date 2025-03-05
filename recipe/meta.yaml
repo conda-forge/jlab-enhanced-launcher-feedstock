@@ -6,7 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  path: ../../jlab-enhanced-launcher/
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 47c544719a32045508017e264c417a68049469f926c10d856b2dba54aa80c19d
 
 build:
   noarch: python
