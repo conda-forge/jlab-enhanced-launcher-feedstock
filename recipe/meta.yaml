@@ -1,13 +1,13 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "3.2.0" %}
+{% set version = "4.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 47c544719a32045508017e264c417a68049469f926c10d856b2dba54aa80c19d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: cace965ba7aeeff274eca382ac143c6935400041da39d1ec66d9223574e1d378
 
 build:
   noarch: python
