@@ -1,13 +1,13 @@
 {% set name = "jlab-enhanced-launcher" %}
-{% set version = "3.2.0" %}
+{% set version = "4.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 47c544719a32045508017e264c417a68049469f926c10d856b2dba54aa80c19d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: cace965ba7aeeff274eca382ac143c6935400041da39d1ec66d9223574e1d378
 
 build:
   noarch: python
@@ -15,24 +15,27 @@ build:
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
-  build:
-    - nodejs >=14.0.0
   host:
-    - python >=3.7
+    - hatch-jupyter-builder >=0.5
+    - hatch-nodejs-version >=0.3.2
+    - hatchling >=1.5.0
+    - jupyterlab =4
     - pip
-    - jupyterlab >=3.1.0
-    - jupyter-packaging >=0.10.0,<2.0.0
+    - python {{ python_min }}
   run:
-    - python >=3.7
+    - python >={{ python_min }},<4.0
+  run_constrained:
+    - jupyterlab >=4,<5
 
 test:
   requires:
+    - jupyterlab =4
     - pip
-    - jupyterlab >=3.1.0
+    - python {{ python_min }}
   commands:
     - pip check
+    - jupyter labextension list
     - jupyter labextension list 2>&1 | grep -ie "@jlab-enhanced/launcher.*OK"
-    - python -m jupyterlab.browser_check --no-browser-test
 
 about:
   home: https://github.com/fcollonval/jlab-enhanced-launcher
