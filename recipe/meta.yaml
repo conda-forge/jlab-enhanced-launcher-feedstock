@@ -24,9 +24,12 @@ requirements:
     - python {{ python_min }}
   run:
     - python >={{ python_min }},<4.0
+  run_constrained:
+    - jupyterlab >=4,<5
 
 test:
   requires:
+    - jupyterlab =4
     - pip
     - python {{ python_min }}
   commands:
